@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>EMB课堂教学评价管理平台|EMB—Classroom teaching evaluation management platform|</title>
+
+        <!--先使用 IE 最新版本和 Chrome-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta http-equiv="refresh" content="">
+        <meta name="keywords" content="Classroom teaching evaluation management platform,评价,课堂教学评价管理平台" />
+        <meta name="description" content="课堂教学评价管理平台" />
+        <meta http-equiv="Pragma" content="no-cache">
+        <!--们设置该条属性，访问者将无法脱机浏览。-->
+        <meta http-equiv="refresh" content="" />
+        <!--;url=http:\\www.baidu.com-->
+        <!--content内的数字代表时间（秒），既多少时间后刷新。
+		如果加url,则会重定向到指定网页（搜索引擎能够自动检测，也很容易被引擎视作误导而受到惩罚）-->
+
+        <meta name="viewport" content="width=device-width,
+		initial-scale=1.0,
+		maximum-scale=1.0, 
+		user-scalable=no , 
+		shrink-to-fit=no" />
+        <meta name="author" content="EMB" />
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/ani.load-ribbon.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+
+        <link rel="shortcut icon" href="images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+        <!-- 注意!   若设置宽度为屏幕宽度 
+		  width=device-width 
+          iPhone 5 添加到主屏后以 
+		  WebApp 全屏模式打开页面时出现黑边 
+		-->
+
+
+
+        <!-- <script type="text/javascript" src="js/jquery.js"></script> -->
+        <!-- jq 3.2 -->
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.bootcss.com/vue/2.6.8/vue.min.js"></script>
+        <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+        <!-- cdn -->
+        <!-- -------------------------------------------- -->
+        <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"> -->
+        <!-- jq 3.2 -->
+        <!-- <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script> -->
+        <!-- -bootstrap/4.1.0/css -->
+        <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css"> -->
+        <!-- popper.min.js -->
+        <!-- <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script> -->
+        <!-- bootstrap/4.1.0/js -->
+        <!-- <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script> -->
+
+        <!--[if lt IE9]> 
+		<script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+
+
+    </head>
+
+    <body>
+
+
+
+
+
+        <!-- 上导航 -->
+        <nav id="navTop" class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+
+            <!-- 菜单缩放按钮 -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#muentop" style="padding:0;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="muentop">
+
+                <!-- 菜单列表 -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand " href="#" data-toggle="modal" data-target="#myModal">
+                            <i class="fa fa-home fa-fw"></i> 首页
+                        </a>
+                    </li>
+                    <nav-iteam v-for="item in items" :i="item">  </nav-iteam>
+                </ul>
+
+            </div>
+            <ul class="navbar-nav justify-content-end">
+            <nav-iteam :i="user"></nav-iteam>
+            </ul>
+
+            <div class="dropdown">
+                <!-- 用户图标 -->
+                <a id="userLink" class="navbar-brand " data-toggle="dropdown" href="#">
+                    <img id="userImg" src="images/page/user.jpg" class="img-fluid dropdown-toggle" alt="UserImage">
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+
+                    <h5 class="dropdown-header">{{user.name}} </h5>
+                    <a class="dropdown-item" href="#">待办事务 <span class="badge badge-pill badge-warning">{{userInfo.pending.length}}</span>
+                        <i class="fa fa-flag fa-fw"></i></a>
+                    <a class="dropdown-item" href="#">我的收藏 <span class="badge badge-pill badge-success">{{userInfo.favorites.length}}</span>
+                        <i class="fa fa-tags fa-fw"></i></a>
+                    <a class="dropdown-item" href="#">消息盒子<span class="badge badge-pill badge-info">{{userInfo.messageBox.length}}</span><i
+                            class="fa fa-commenting-o fa-fw"></i></a>
+                    <h5 class="dropdown-header">账户管理 </h5>
+                    <a class="dropdown-item" href="#">修改信息 <i class="fa fa-pencil-square-o fa-fw"></i> </a>
+                    <a class="dropdown-item" href="#">忘记密码 <i class="fa fa-lock fa-fw"></i></a>
+                    <a class="dropdown-item" href="#">退出登录<i class="fa fa-power-off fa-fw"></i></a>
+                </div>
+            </div>
+
+        </nav>
+
+
+
+        <!-- -----------模态框---------- -->
+       <div class="modal fade" id="myModal" data-backdrop="static">
+           <div class="modal-dialog">
+               <div class="modal-content">
+                   <button id="closeLoginmodal" type="button" class="btn btn-block btn-sm"> <i class="fa fa-close "></i>
+                       取消登录</button>
+       
+                   <div class="modal-body card">
+       
+                       <div class="card-body" style="margin:auto;">
+       
+                           <h4 class="card-title" style="margin: 1em auto;">
+       
+                               <center>用户登录
+                               </center>
+       
+       
+                           </h4>
+       
+                          
+                           <br />
+                           <form>
+                               <div class="input-group mb-3 ">
+                                   <div class="input-group-prepend">
+                                       <span class="input-group-text">
+                                           <i class="fa fa-fw fa-user"></i>
+                                           账户身份:</span>
+                                   </div>
+                                   <select class="form-control" id="userrole">
+                                       <option>管理员</option>
+                                       <option>学生</option>
+                                       <option>教师</option>
+                                   </select>
+                               </div>
+       
+       
+                               <br />
+                               <div class="input-group mb-3 ">
+                                   <div class="input-group-prepend">
+                                       <span class="input-group-text">
+                                           <i class="fa fa-fw fa-at"></i>
+                                           邮箱账户 :
+                                       </span>
+                                   </div>
+                                   <input id="email" type="email" v-model.trim="user.userID" class="form-control"
+                                       placeholder="输入邮箱账户">
+                               </div>
+       
+                               <br />
+                               <div class="input-group mb-3 ">
+                                   <div class="input-group-prepend">
+       
+                                       <span class="input-group-text">
+                                           <i class="fa fa-fw fa-lock"></i>
+                                           账户密码 :</span>
+       
+                                   </div>
+                                   <input id="pwd" type="password" v-model.trim="user.userPassWord" class="form-control"
+                                       placeholder="输入账户密码">
+                               </div>
+       
+       
+       
+       
+       
+                               <div class="custom-control custom-checkbox mb-3 " style="margin-top: 1.4em;">
+                                   <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                                   <label class="custom-control-label" for="customCheck">
+       
+                                       <small> 记住账户</small>
+       
+                                   </label>
+                                   <a href="#" class="card-link float-right">
+                                       <small>忘记密码？</small></a>
+       
+                               </div>
+       
+       
+                               <!-- <input type="range" class="custom-range" id="customRange" name="points1"> -->
+       
+       
+       
+       
+                               <button type="submit" class="btn btn-primary btn-block">
+       
+                                   提交
+                                   <i class="fa fa-fw fa-angle-double-right"></i>
+                               </button>
+       
+       
+       
+       
+                           </form>
+       
+                           <hr />
+       
+                           <center>
+                               <small>
+                                   <i class="fa fa-fw fa-registered"></i> EMB-课堂教学评价系统 .
+                                   <a href="#" class="card-link">注册</a>
+                               </small>
+       
+                               <!-- <i class="fa fa-fw fa-check" style="font-size:36px; color: #007BFF ;"></i> -->
+                           </center>
+       
+       
+       
+       
+       
+       
+                       </div>
+       
+       
+       
+                   </div>
+       
+       
+       
+       
+       
+               </div>
+           </div>
+       
+       
+       
+       </div>
+
+
+
+
+
+        <!--____________________________   Navigation 下 Module ____底部命令控制台_______________________** Start ↓  **  -->
+
+
+        <nav id="navFoot" class="mx-auto navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+
+
+            <div class="navbar-collapse justify-content-center">
+
+                <!-- LOGO图标 -->
+                <a id="logoLink" class="align-self-center mr-3 navbar-brand " href="javascript:void(0)" data-toggle="collapse"
+                    data-target="#muenfoot">
+                    <img src="images/ico/apple-touch-icon-114-precomposed.png" class="img-thumbnail" alt="logo">
+                </a>
+
+                <!-- 系统文字 --EMB text-->
+                <span class="navbar-text">
+                    ®课堂教学评价系统|EMB开发™|
+                </span>
+                <!-- 菜单列表 -->
+
+
+            </div>
+
+            <!-- 底部下拉/ 左列表 -->
+            <div class="collapse navbar-collapse justify-content-end" id="muenfoot">
+                <ul id="loadpage-panel" class="navbar-nav">
+
+                    <!-- <li id="loadpageico_1" class=" card-open nav-item " data-cardid="testcard">
+						<a class="nav-link" href="javascript:void(0)">1<i class="fa fa-circle-o fa-fw"></i> </a>
+					</li> -->
+
+                </ul>
+
+                <span class="navbar-text">
+                    :<i class="fa fa-list-alt fa-fw"></i>已载数据
+                </span>
+                
+
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)" data-trigger="hover" data-toggle="popover"
+                            data-placement="top" v-bind:data-content="appTip.body" v-bind:title="appTip.title">
+                            <i class="fa fa-comment-o fa-fw"></i>TipBox
+                        </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)"><i class="fa fa-spinner fa-pulse"></i>
+                            运行状态:
+                            <span v-bind:class="conStabg" data-trigger="hover" data-toggle="popover" data-placement="top"
+                                :data-content="conMs">
+                                <i v-bind:class="conStaIco"></i>
+                            </span></a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+
+
+
+
+        <!--___________________________    Module   END     ________________________________ ** ↑ End **-->
+
+
+
+
+
+
+
+        <!--____________________________ Text Page Data  Module ___________________________** Start ↓  **  -->
+        <!--Text  Functional : The page Data Display-->
+        <!--Text   Author : ZM -->
+
+
+
+
+
+        <div id="page" class="container ">
+
+            <!-- style="background:#282832;" text-white -->
+            <div id="testcard" class="card bg-light text-dark">
+                <div class="card-header">
+
+                    <span class="card-bt card-close"> <i class="fa fa-close fa-fw" style="font-size:24px"></i></span>
+                    <span class="card-bt card-min"><i class="fa fa-caret-down fa-fw" style="font-size:24px"></i></span>
+
+                    <h6 class="card-title">EMB 评价系统</h6>
+
+                    <a href="#" class="card-link"> <span class="badge badge-secondary">系统介绍</span><i class="fa fa-tag fa-fw"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+
+                    <button id="testbt" @click="get('http://www.runoob.com/vue2/vue-events.html')">测试按钮</button>
+
+                    <p></p>
+
+                    <p class="card-text">
+                        本系统在技术上使用HTML5+ CSS3+JavaScript和前端框架Bootstrap实现前端的数据提交、
+                        数据的显示，和用户界面的实现，后台将用ASP.NET 技术实现数据的接收、处理；使用ADO数据库、SQL
+                        SERVER 2017数据库实现数据的存储；综上系统实现技术Bootstrap + ASP.NET+ SQL SERVER 2017;
+                    </p>
+
+                </div>
+
+                <div class="card-footer">
+
+                    <!-- primary -->
+                    <a href="#" class="card-link"> <span class="badge badge-light">126</span><i class="fa fa-thumbs-o-up fa-fw"></i></a>
+                    <a href="#" class="card-link"><span class="badge badge-light">11</span><i class="fa fa-thumbs-o-down fa-fw"></i>
+                    </a><a href="#" class="card-link"><i class="fa fa-heart-o fa-fw"></i>收藏 </a>
+                    <a href="#" class="card-link"><i class="fa fa-external-link fa-fw"></i>分享 </a>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <!--___________________________  Text  Module   END     ________________________________ ** ↑ End **-->
+
+
+
+
+
+
+
+        <!--____________________________   Loading Module ___________________________** Start ↓  **  -->
+        <div id="loadBox"></div>
+        <!--___________________________    Module   END     ________________________________ ** ↑ End **-->
+
+
+
+
+        <script>
+            // document.write("<scr" + "ipt src=\"js/ani.particle.js\"></sc" + "ript>");
+            // document.write("<scr" + "ipt src=\"js/ani.sixside.js\"></sc" + "ript>");
+            // document.write("<scr" + "ipt src=\"js/base.js\"></sc" + "ript>");
+            document.write("<scr" + "ipt src=\" js/ani.load-ribbon.js\"> </sc" + "ript>");
+            // $("#mss").load("data/cellms.xml");
+            // console.log(SMSRecord);
+        </script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
