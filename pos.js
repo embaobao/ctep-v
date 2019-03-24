@@ -29,7 +29,7 @@ function POS() {
 
 
 
-    //做动作 得到数据 
+    //活动 得到数据 
     this.Do = function (activ, data, i) {
         let items = this.actionList;
         for (var i in items) {
