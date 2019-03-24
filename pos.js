@@ -14,7 +14,7 @@ var _posconfig = {
 }
 
 function POS() {
-    //post 对象
+    //jq 中的 post 对象
     this._post = function (url, obj) { $.post(url, obj, function (data, status) { return { data: data, status: status }; }); };
     //网站根URL
     this.baseUrl = _posconfig.baseUrl;
