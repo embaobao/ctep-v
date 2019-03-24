@@ -4077,16 +4077,3 @@ function ChckUserForCookie() {
 });
 
 
-/**
- * Pos 
- *  post Js
- *
- *  @author emb
- *  @date   2019-03-26
- *  @email  1132067567@qq.com
- *
- */
-var Pos = function () { }
-Pos.BaseUrl = '';
-Pos.ActiveList = [];
-Pos.Post = function (url, obj) { $.post(url, obj, function (data, status) { return { data, status }; }); };
