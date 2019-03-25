@@ -7,27 +7,44 @@ var _posconfig = {
         { name: "register", url: "User/register/", data: { id: 1, email: "1132067567@qq.com", pw: 123, role: 0 } }
     ],
     responseList: [
-        { name: "login", func: function (data) { console.log(this.name + "响应处理器 收到数据:" + data); } },
-        { name: "register", func: function (data) { console.log(this.name + "响应处理器 收到数据:" + data); } }
+        {
+            name: "login",
+            func: function (response) {
+               console.log( response.id)
+            }
+        },
+        {
+            name: "register",
+            func: function (data) {
+                console.log(this.name + "响应处理器 收到数据:" + data);
+            }
+        }
     ],
     triggerList: [
         { name: "#login", action: "login", event: "click" },
-        { name: "#register", action: "register", event: "click", index: -1},
+        { name: "#register", action: "register", event: "click", index: -1 },
     ],
 }
 
+// var Data={};
+//post 数据的方法
+function _post(url, obj) {
+    var result;
+    $.ajax({
+        url: url,
+        type:"post",
+        data:obj,
+        async:false,
+        success: function (res) {
+          result=res;  
+        }
+    });
+    return result;
+};
+
 function POS() {
 
-    //jq 中的 post 对象 return { data: data, status: status };
-    this._post = function (url, obj) {
-        const result = { status: {}, data: {} };
-        $.post(url, obj, function (data, status) {
-            result.status = status;
-            result.data = data;
-        });
-        return result;
-    };
-    //网站根URL
+    //网站根URL 
     this.baseUrl = _posconfig.baseUrl;
     // 动作列表
     this.actionList = _posconfig.actionList;
@@ -49,7 +66,7 @@ function POS() {
                 console.log("提交数据↓:");
                 console.log(data);
                 console.log("提交数据↑:");
-                let res = this._post(this.baseUrl + act.url, data);
+                var res = _post(this.baseUrl + act.url, data);
                 this.responseList.forEach(element => {
                     if (element.name == activ) {
                         // let res=1 测试数据
@@ -65,12 +82,12 @@ function POS() {
                         }
                         console.log("--↓");
                         console.log("执行动作:" + activ + "响应配置表中的响应操作");
-                        element.func(res,index);
+                        element.func(res);
                         console.log("---↓");
                         console.log("写入数据列表");
                         this.dataList.push({ name: activ, response: res, index: index });
                         console.log("---数据列表↓");
-                        for (const i in this.dataList) { console.log(this.dataList[i]); } 
+                        for (const i in this.dataList) { console.log(this.dataList[i]); }
                         return res;
                     }
 
@@ -102,7 +119,7 @@ function POS() {
     }
 
     //通过行为与得到的数据绑定
-    this.Bind = function (activ, func,index) {
+    this.Bind = function (activ, func, index) {
         console.log("已绑定" + activ + "数据队列处理器");
         //获取数据列表
         let items = this.dataList;
@@ -116,24 +133,21 @@ function POS() {
                 console.log(act.response);
                 try {
                     console.log("数据列表数据已传入->动作:" + activ + "的响应处理器！");
-                    if(index!=null)
-                    {
-                        if(act.index==index)
-                        {
+                    if (index != null) {
+                        if (act.index == index) {
                             console.log("标识符数据队列处理器 执行-----↓");
                             func(act.response);
                         }
-                        else{
+                        else {
                             console.log("此动作的标识符下没有处理数据");
                         }
-                        
-                    }else
-                    {
+
+                    } else {
                         console.log("数据队列处理器 执行-----↓");
                         func(act.response);
                     }
 
-                    
+
                 } catch (error) {
                     return error;
                 }
@@ -161,8 +175,8 @@ function POS() {
             console.log("注册激活器事件:" + trigger.action + "↓");
             console.log("激活器:" + trigger.name + "↓");
             $(trigger.name).on(trigger.event, function () {
-                 console.log("———————————————————————————————trigger-index——》"+trigger.index);
-                if (trigger.index < 0||trigger.index==null) {
+                console.log("———————————————————————————————trigger-index——》" + trigger.index);
+                if (trigger.index < 0 || trigger.index == null) {
                     new POS().DoIt(trigger.action);
                 }
                 else {
@@ -172,9 +186,9 @@ function POS() {
             });
         }
 
-        console.log("《————数据列表数据显示:↓——》");
+        console.log("数据列表数据显示:--------↓");
         for (const i in this.dataList) { console.log(this.dataList[i]); }
-        console.log("《————数据列表数据显示↑————》");
+        console.log("数据列表数据显示----↑");
 
 
 
@@ -189,8 +203,8 @@ function POS() {
             console.log("注册激活器事件:" + trigger.action + "↓");
             console.log("激活器:" + trigger.name + "↓");
             $(trigger.name).on(trigger.event, function () {
-                console.log("(相同动作的不同处理器)trigger-index->:"+trigger.index);
-                if (trigger.index < 0||trigger.index==null) {
+                console.log("(相同动作的不同处理器)trigger-index->:" + trigger.index);
+                if (trigger.index < 0 || trigger.index == null) {
                     pos.DoIt(trigger.action);
                 }
                 else {
@@ -204,7 +218,7 @@ function POS() {
 
         for (const i in this.dataList) { console.log(this.dataList[i]); }
         console.log("----↓");
-        
+
 
     }
 
@@ -223,13 +237,17 @@ function POSini(pos) {
 }
 
 // _posconfig.activeList = [];
-// console.log(pos._post("http://localhost:55810/User/Login/", { email: "1132067567@qq.com", pw: 123, role: 0 }));
 
-//网站根URL
-// window.onload = function () {
-//     // POSIni(new POS());
-//     POSIni(new POS());
-// }
+// var appdata=_post("http://localhost:55810/User/Login/", { email: "1132067567@qq.com", pw: 123, role: 0 });
+
+
+// console.log(appdata.id);
+
+// 网站根URL
+window.onload = function () {
+    // POSIni(new POS());
+    POSini(new POS());
+}
 
 // var pos = new POS();
 
