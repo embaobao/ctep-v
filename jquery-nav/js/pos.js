@@ -10,7 +10,13 @@ var _posconfig = {
         {
             name: "login",
             func: function (response) {
-               console.log( response.id)
+                if (response == null) {
+
+                }
+                else {
+                    alert(response.id);
+                }
+
             }
         },
         {
@@ -30,15 +36,20 @@ var _posconfig = {
 //post 数据的方法
 function _post(url, obj) {
     var result;
-    $.ajax({
-        url: url,
-        type:"post",
-        data:obj,
-        async:false,
-        success: function (res) {
-          result=res;  
-        }
-    });
+    try {
+        $.ajax({
+            url: url,
+            type: "post",
+            data: obj,
+            async: false,
+            success: function (res) {
+                result = res;
+            }
+        });
+    } catch (error) {
+        result = null;
+    }
+
     return result;
 };
 
@@ -106,10 +117,10 @@ function POS() {
             if (act.name == activ) {
 
                 if (arguments.length == 1) {
-                    this.Do(activ, act.data);
+                   return this.Do(activ, act.data);
                 }
                 else {
-                    this.Do(activ, act.data, index);
+                    return this.Do(activ, act.data, index);
                 }
 
             }
@@ -246,7 +257,7 @@ function POSini(pos) {
 // 网站根URL
 window.onload = function () {
     // POSIni(new POS());
-    POSini(new POS());
+    // POSini(new POS());
 }
 
 // var pos = new POS();

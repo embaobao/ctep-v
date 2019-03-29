@@ -12,11 +12,17 @@
     <link rel="shortcut icon" href="images/ico/ctep.png">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+
     <script src="js/snap.svg-min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/pos.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/sortable.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+
+    </script>
 
     <style>
         .fixed-top {
@@ -28,6 +34,10 @@
             border: 0px;
         }
 
+        .card img {
+            width: 100%;
+            height: 100%;
+        }
 
         .jumbotron {
             color: #13227a;
@@ -40,6 +50,28 @@
             padding: 0;
             margin: 0;
 
+        }
+
+        #efList .alert {
+            width: 16em;
+        }
+
+        #efList .card {
+            border: 1px solid black;
+            border-radius: 1em;
+            width: 16em;
+        }
+        #efList .card {
+            border: 1px solid black;
+            border-radius: 1em;
+            width: 16em;
+        }
+        .card-body .table{
+            margin: 0 auto;
+        }
+
+        #efList .card {
+            font-size: small;
         }
     </style>
 </head>
@@ -136,155 +168,82 @@
 
     </nav>
 
-
-
+    <!-- 
 
     <div class="card">
         <div class="card-body">
             <div class="container">
+
                 <div class="alert alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+
                     <div class="jumbotron">
-                        <h1>课堂教学评价管理平台</h1>
-                        <p class="card-text">EMB课堂教学评价管理平台是以提高教学质量为目的
-                        </p>
-                        <p class="card-text">
-                            让学生即时评价教学课堂的质量反映教师的课堂状态和教学水平
-                        </p>
-                        <p class="card-text"> 从数据角度分析督促教学质量 的提高</p>
+                        <h4 class="card-title">判</h4>
+                        <p class="card-text">您当前的评价列表....</p>
                     </div>
-
-
                 </div>
-
-
-                <!-- <div class="container">
-                        <div class="container">
-                                <div class="alert alert-success alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>成功!</strong> 指定操作成功提示信息。
-                                </div>
-                                <div class="alert alert-info alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>信息!</strong> 请注意这个信息。
-                                </div>
-                                <div class="alert alert-warning alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>警告!</strong> 设置警告信息。
-                                </div>
-                                <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>错误!</strong> 失败的操作。
-                                </div>
-                                <div class="alert alert-primary alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>首选!</strong> 这是一个重要的操作信息。
-                                </div>
-                                <div class="alert alert-secondary alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>次要的!</strong> 显示一些不重要的信息。
-                                </div>
-                                <div class="alert alert-dark alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>深灰色!</strong> 深灰色提示框。
-                                </div>
-                                <div class="alert alert-light alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <strong>浅灰色!</strong>浅灰色提示框。
-                                </div>
-                            </div> -->
-                <div class="alert alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4 class="card-title">Bui！</h4>
-                    <p class="card-text">欢迎您使用EMB- CTEP！</p>
-                    <p class="card-text">Bui！ 是您的主页!</p>
-                    <p class="card-text">我们希望通过 以 [-推荐信息] 的方式，来简化您的操作.</p>
-                    <p> 希望他可以减少您停留在操作的时间！</p>
-
-                </div>
-
-
+              
 
             </div>
         </div>
 
+    </div> -->
+    <!-- <iframe src="sorttable.html" width="100%" style="border:0px;height: 600px;"></iframe> -->
 
-    </div>
+    <div id="efList" class="container  justify-content-around  d-flex mb-3 flex-wrap">
 
+        <!-- <div class="alert  alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <div class="card">
+                <div class="card-header text-info">软件工程导论</div>
+                <img class="card-img-top img-thumbnail img-fluid" src="images/items/timg.jpg" alt="Card image">
+                <div class="card-body ">             
+                    <p>课程描述</p>
+                            <table class="table table-sm table-responsive table-hover text-muted" >
+                                    <thead>
+                                      <tr>
+                                        <th>授课人:</th>
+                                        <th>马有忠</th>                                     
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>开始时间:</td>
+                                        <td>9-22-10:00</td>
+                                      </tr>
+                                      <tr>
+                                            <td>结束时间:</td>
+                                            <td>9-22-10:00</td>
+                                          </tr>
+                                      <tr>
+                                        <td>分数:</td>
+                                        <td>99.99</td>
+                                       
+                                      </tr>
+                                      <tr>
+                                        <td>评价人数:</td>
+                                        <td>24</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                  
+                </div>
+                <div class="card-footer">
+                    <a href="#">评价</a>
+                </div>
+            </div>
+        </div> -->
 
-    <div class="alert alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <div class="container">
-            <h4>功能介绍</h4>
-
-
-            <ul class="list-group">
-
-                <li class="list-group-item list-group-item-light">
-                    <dl>
-                        <dt><a href="" target="_blank">判</a></dt>
-                        <dd>-您在 -"判"-这里 可以看到您想要做出的评价，并提交评价.</dd>
-
-                    </dl>
-                </li>
-                <li class="list-group-item list-group-item-light">
-                    <dl>
-
-                        <dt>
-                            <a href="" target="_blank">观</a>
-                        </dt>
-                        <dd>-您在 -"观"-这里 可以看到您已经提交的评价，并修改评价.</dd>
-                    </dl>
-                </li>
-                <li class="list-group-item list-group-item-light">
-                    <dl>
-                        <dt>
-                            <a href="" target="_blank">语</a>
-                        </dt>
-                        <dd>-您在 -"语"-这里 可以看到他人的评论，并发表您评论.</dd>
-                    </dl>
-                </li>
-                <li class="list-group-item list-group-item-light">
-                    <dl>
-
-                        <dt>
-                            <a href="" target="_blank">书</a>
-                        </dt>
-                        <dd>-您在 -"书"-这里 可以看到和您绑定的永久和暂时评价对象，并修改它.</dd>
-                    </dl>
-                </li>
-                <li class="list-group-item list-group-item-light">
-                    <dl>
-                        <dt>
-                            <a href="" target="_blank">入</a>
-                        </dt>
-                        <dd>-您在 -"入"-这里在这里您可以加入我们申请您的账户，更重要的是这是您登陆的入口.</dd>
-                    </dl>
-                </li>
-            </ul>
-
-        </div>
-
-    </div>
-
-    <div class="alert alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <div class="container">
-            <blockquote class="blockquote">
-                <p>
-                    没有人不爱惜他的生命，但很少人珍视他的时间。
-                </p>
-                <footer class="blockquote-footer">From 梁实秋</footer>
-            </blockquote>
-        </div>
 
     </div>
 
 
 
-    <nav class="nav justify-content-center navbar-light  ">
+
+
+    <nav class="nav justify-content-center navbar-light">
         <span class="navbar-text">
-            <small> Based on .NET MVC . Design Power By EMB (吃火星的宝宝)-15级-金融三班朱盟 .</small>
+            <small>Design Power By EMB (吃火星的宝宝)-15级-金融三班朱盟 .</small>
         </span>
 
         <ul class="nav ">
@@ -301,11 +260,9 @@
 
 
 
-    <!-- <script src="js/classie.js"></script> -->
+
     <script>
         (function () {
-
-
             function SVGMenu(el, options) {
                 this.el = el;
                 this.init();
