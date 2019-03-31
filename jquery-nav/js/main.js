@@ -62,7 +62,9 @@ $(document).ready(function () {
         '<th>授课人:</th><th>{author}</th></tr></thead><tbody><tr><td>开始时间:</td><td>{EStartTime}</td></tr><tr><td>结束时间:</td><td>{EEndTime}</td>' +
         '</tr><tr><td>分数:</td><td>{score}</td></tr><tr><td>' +
         '课程:</td><td>{CourseId}</td></tr></tbody></table></div><div class="card-footer"><a href="#">评价</a></div></div></div>';
-    //元素获取基础方法
+    
+    var ass_row='<tr><td>{title}</td><td>{score}</td><td><a class="btn btn-sm btn-outline-info">修改</a><a class="btn btn-sm btn-outline-danger">删除</a></td></tr>';
+        //元素获取基础方法
     var _val = function (select) {
         return $(select).val();
     }
@@ -113,8 +115,8 @@ $(document).ready(function () {
             },
             {
                 name: "评价历史",
-                url: "User/PutInfo/",
-                data: emb_User_info,
+                url: "Evalu/Assessments/",
+                data:{id:1} ,
             },
 
         ],
@@ -171,7 +173,23 @@ $(document).ready(function () {
                     }
 
                 }
+            },
+            {
+                name: "评价历史",
+                func: function (response) {
+                    if (response == null) { }
+                    else {
+                        response.forEach(element=>{
+                            element.body=JSON.parse(element.body);
+                            // const t=
+                            $("#assList").prepend(ass_row.format({title:element.title,score:element.body.AllScore}));
+                            // console.log(ass_row);
+                        });
+                        // console.log(response);
+                    }
+                }
             }
+
 
 
         ],
@@ -187,8 +205,9 @@ $(document).ready(function () {
     emb_User.role = 0;
 
     var pos = new POS();
-    pos.DoIt("评价表");
-    pos.DoIt("");
+    // pos.DoIt("评价表");
+
+    pos.DoIt("评价历史");
 
     // var pos = new POS();
 
