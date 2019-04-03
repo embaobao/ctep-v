@@ -42,10 +42,39 @@ function pushCookie(userObj) {
 
 function ChckUserForCookie() {
     var BCode = new Base64();
-    var user = JSON.parse(BCode.decode(getCookie("emb_user")))
+    var user={id:-1};
+    try{
+        user = JSON.parse(BCode.decode(getCookie("emb_user")));
+    }catch{
+
+    }
     if (user.id > 0) {
+        
+        layer.msg('登录');
+        // --------------------------------打开弹框
+        // layer.open({
+        //     skin: 'demo-class',
+        //     title: '在线调试',
+        //     content: '可以填写任意的layer代码'
+        // });
+
         console.log(user.email + "登录");
     } else {
+        // layer.msg('没有登录！');
+        //  layer.open({
+        //     skin: 'demo-class',
+        //     title: '登录提示',
+        //     content: '您还没有登录，是否登录？'
+            
+        // });
+        // var index=layer.open({
+        //     type: 2, 
+        //     content: ['register.html',true] //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        //   }); 
+          
+        //   layer.iframeAuto(index) ;
+        // layer.full(index);
+        //   layer.tips('只想提示地精准些', '#menu');
         console.log("没有登录！");
     }
 }

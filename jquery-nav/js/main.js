@@ -207,8 +207,12 @@ $(document).ready(function () {
     var pos = new POS();
     // pos.DoIt("评价表");
 
-    pos.DoIt("评价历史");
-
+    // pos.DoIt("评价历史");
     // var pos = new POS();
 
+     function ChekLogin (){
+         
+
+     }
+     ChckUserForCookie();
 });
